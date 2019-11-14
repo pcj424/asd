@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    <bean id="UserDao" class="com.itclas.dao.imp.UserDaoImp" >-->
+<!--    <constructor-arg name="username" value="彭程军"/>-->
+<!--    <constructor-arg name="age" value="18"/>-->
+<!--    </bean>-->
+    <bean id="UserDao" class="com.itclas.dao.imp.UserDaoImp" >
+        <property name="list">
+            <list>
+                <value>彭程军</value>
+                <value>17</value>
+            </list>
+        </property>
+        <property name="mapUser">
+            <map>
+                <entry key="01" value-ref="User"></entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="User" class="com.itclas.uts.User">
+        <property name="name" value="彭程军"/>
+        <property name="age" value="17"/>
+        <property name="geder" value="男"/>
+    </bean>
+<!--    <bean id="Service" class="com.itclas.service.impl.UserServiceImpl">-->
+<!--            <property name="userDao" ref="UserDao"></property>-->
+<!--</bean> set方法的依赖配置环境-->
+    <bean id="Service" class="com.itclas.service.impl.UserServiceImpl">
+        <constructor-arg name="userDao" ref="UserDao"></constructor-arg>
+    </bean>
+</beans>
